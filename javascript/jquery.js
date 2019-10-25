@@ -6,15 +6,36 @@ $(document).ready(function(){
     var curDate = moment().format('MMMM Do YYYY');
     currentDateEl.text(curDate);
 });
-// textbox intializer
-var schedArray = ["9AM","10AM","11AM","12PM","1PM","2PM","3PM","4PM","5PM"];
-for (var i = 0; i < schedArray.length; i++){
-       $(".container").append(`<div class="row time-block" id=block${schedArray[i]}><div class="col-2 hour" id=${schedArray[i]}hour><p>${schedArray[i]}</p></div> 
-       <textarea class="col-8 description" id=desc${schedArray[i]}></textarea><button class="col-2 saveBtn i far fa-save" id=btn${schedArray[i]}> </i></button></div>`);
-};   
 // function to save input from text area 
 $(".saveBtn").click(function(){
+    // var to target the text area for each specific time block
     var textValue=$(this.parentNode.children[1]).val();
+    // code to save the text area items in local storage 
     localStorage.setItem($(this).attr("id"),textValue);
 });
+// function to color code each time block 
+$(document).ready(function(){
+    var currentTime= moment().hours();
+    console.log(currentTime);
+    // loop over time blocks
+    $(".time-block").each(function() {
+      var blockHour = parseInt($(this).attr("id"));
 
+     console.log(blockHour);
+      // check if we've moved past this time
+      if (blockHour < currentTime) {
+        $(this).addClass("past");
+      } 
+      //check if its the current time
+      else if (blockHour === currentTime) {
+        $(this).removeClass("past");
+        $(this).addClass("present");
+      } 
+      // check if its future time block
+      else {
+        $(this).removeClass("past");
+        $(this).removeClass("present");
+        $(this).addClass("future");
+      }
+    });
+});
