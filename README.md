@@ -6,5 +6,5 @@ The app is also designed to follow with current hour, so that the user is notifi
 The grey text box indicated the hour has past, the red indicates the present hour, and the green indicates the future hour. 
 Screen shot of the time blocks can be viewed here:
 ![day planner demo](assets/time-block-eg.png)
-The day-planner can be accessed here: 
+The day-planner can be accessed here: https://davidgeht.github.io/Day-Planner/
 
